@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "build": "tsc",
+    "preview": "node dist/javascript/main.js"
+  },
   "devDependencies": {
     "@types/node": "^22.7.4",
     "node": "^22.9.0"
