@@ -8,6 +8,13 @@ prelims for SE components - LEGAYADA
 'npm run build' convert all the ts files to js for first time use (from the repo)
 'npm run preview' runs the built main.js (run this everytime to start ordering again)
 
+```
+npm install
+npm run build
+npm run preview
+
+```
+
 # explanation for factory method
 
 it's basically creating a specific type of meal. From an interface it follows a common method 'create meal' that creates a specific meal type
