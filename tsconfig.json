@@ -4,5 +4,5 @@
     "rootDir": "./src/typescript",
     "esModuleInterop": true
   },
-  "include": ["src"]
+  "include": ["src", "main.ts"]
 }

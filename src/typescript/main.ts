@@ -1,5 +1,6 @@
 import promptSync from 'prompt-sync'
 const prompts = promptSync()
+import { burgerMeal, Burger, BurgerFactory } from './burger'
 
 /**
  * make a main prompt class
@@ -9,20 +10,6 @@ const prompts = promptSync()
  * yeah.
  * just put comments and sepearator
  */
-
-function burgerMeal() {
-  const veggies = prompts(
-    'What are your vegetables? (pickles/onions/tomatoes) '
-  )
-  const cheese = prompts('cheese? (true/false) ')
-  const patties = prompts('how many patties?(1-3) ')
-  const buildBurger = new ConcreteBurgerBuilder()
-    .addVegetables(veggies.split(','))
-    .hasCheese(cheese == 'true')
-    .setPatties(Number.parseInt(patties))
-    .build()
-  console.log(buildBurger.description())
-}
 
 function customizeMeal(test: Meal) {
   if (test instanceof Burger) {
