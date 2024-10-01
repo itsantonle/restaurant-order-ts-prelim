@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/javascript",
+    "rootDir": "./src/typescript",
+    "esModuleInterop": true
+  },
+  "include": ["src"]
+}

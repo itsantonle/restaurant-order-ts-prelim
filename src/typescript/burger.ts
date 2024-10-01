@@ -1,17 +1,15 @@
-const ps = require('prompt-sync')
-const prompts = ps()
+// - Options:
+//      - Number of Patties: (1-3)
+//      - Cheese: Yes/No
+//      - Vegetables: Lettuce, Tomato, Onion, Pickles (select multiple)
+//      - Condiments: Ketchup, Mayo, Mustard
+//      - Bun Type: Regular, Sesame, Whole Wheat
 
-/**
- * make a main prompt class
- * make module for the burrito and sandwich
- * do error handling ripz emton
- * i mean i could compile this all in one file
- * yeah.
- * just put comments and sepearator
- */
-interface Meal {
-  description(): string
-}
+type Patty = 1 | 2 | 3
+type Cheese = 'yes' | 'no'
+type Vegetable = 'Lettuce' | 'tomato' | 'onion' | 'pickles' // able to select multiple
+type Condiment = 'ketchup' | 'mayo' | 'mustard'
+type Bun = 'regular' | 'sesame' | 'whole wheat'
 
 class Burger implements Meal {
   public patties: number
@@ -25,12 +23,14 @@ class Burger implements Meal {
   }
 
   public description(): string {
-    return `burger = patties: ${this.patties}, cheese: ${this.cheese}, vegetables: ${this.vegetables}`
+    return `
+    ORDER 
+    ___
+     food type: Burger
+     patties: ${this.patties}
+     cheese: ${this.cheese}
+     vegetables: ${this.vegetables}`
   }
-}
-
-interface MealFactory {
-  createMeal(): Meal
 }
 
 class BurgerFactory implements MealFactory {
@@ -69,21 +69,3 @@ class ConcreteBurgerBuilder implements BurgerBuilder {
     return this.burger
   }
 }
-
-// try to put this in like the main file instead lol
-function test(test: Meal) {
-  if (test instanceof Burger) {
-    const veggies = prompts('What are your vegetables? ')
-    const cheese = prompts('cheese? true/false ')
-    const patties = prompts('how many patties? ')
-    const buildBurger = new ConcreteBurgerBuilder()
-      .addVegetables(veggies.split(','))
-      .hasCheese(cheese == 'true')
-      .setPatties(Number.parseInt(patties))
-      .build()
-    console.log(buildBurger.description())
-  }
-}
-
-const borg = new BurgerFactory().createMeal()
-test(borg)
