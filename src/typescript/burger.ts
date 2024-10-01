@@ -136,5 +136,5 @@ export function burgerMeal() {
     .chooseBun(bun)
     .build()
 
-  console.log(buildBurger.description())
+  return buildBurger
 }

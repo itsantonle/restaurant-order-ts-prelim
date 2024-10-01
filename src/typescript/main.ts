@@ -1,30 +1,35 @@
 import promptSync from 'prompt-sync'
 const prompts = promptSync()
-import { burgerMeal, Burger, BurgerFactory } from './burger'
+import { BurgerFactory } from './burger'
+import { isCombo, customizeMeal } from './subprompts'
+import { errorMessage } from './error'
 
-/**
- * make a main prompt class
- * make module for the burrito and sandwich
- * do error handling ripz emton
- * i mean i could compile this all in one file
- * yeah.
- * just put comments and sepearator
- */
-
-function customizeMeal(test: Meal) {
-  if (test instanceof Burger) {
-    burgerMeal()
-  }
-}
+// this is the main app
 
 function mainPrompt() {
-  const mealType = prompts('what type of meal would you like? ')
+  const mealType = prompts(
+    'Welcome to the restaurant! What type of meal would you like?(burger,sandwich,burrito) '
+  )
+  var meal: Meal = null
+
   switch (mealType) {
     case 'burger':
-      customizeMeal(new BurgerFactory().createMeal())
+      meal = customizeMeal(new BurgerFactory().createMeal())
       break
     default:
-      throw new Error('not a valid meal type!')
+      errorMessage('CLASS_NOT_FOUND')
+  }
+
+  const addCombo = prompts('Would you like to add fries and drinks?(yes/no) ')
+  switch (addCombo) {
+    case 'yes':
+      console.log(isCombo(meal))
+      break
+    case 'no':
+      console.log(meal.description())
+      break
+    default:
+      errorMessage()
   }
 }
 
