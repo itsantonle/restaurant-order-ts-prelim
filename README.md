@@ -4,6 +4,7 @@ prelims for SE components - LEGAYADA
 
 # commands to run
 
+'npm install' installs all the dependencies needed for this file
 'npm run build' convert all the ts files to js for first time use (from the repo)
 'npm run preview' runs the built main.js (run this everytime to start ordering again)
 
