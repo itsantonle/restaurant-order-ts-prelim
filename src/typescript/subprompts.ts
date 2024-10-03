@@ -1,4 +1,5 @@
 import { burgerMeal, Burger } from './burger'
+import { burritoMeal, Burrito } from './burrito'
 import promptSync from 'prompt-sync'
 const prompts = promptSync()
 import { errorMessage } from './error'
@@ -22,5 +23,8 @@ export function isCombo(meal: Meal) {
 export function customizeMeal(test: Meal) {
   if (test instanceof Burger) {
     return burgerMeal()
+  }
+  if (test instanceof Burrito) {
+    return burritoMeal()
   }
 }

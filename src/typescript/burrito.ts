@@ -7,7 +7,7 @@ type Rice = 'white' | 'brown'
 type Protein = 'chicken' | 'beef' | 'tofu'
 type Toppings = 'salsa' | 'guacamole' | 'sour cream' | 'cheese'
 
-class Burrito implements Meal {
+export class Burrito implements Meal {
   public beans: Beans
   public rice: Rice
   public protein: Protein
@@ -24,17 +24,17 @@ class Burrito implements Meal {
     return `
     ORDER 
     ___
+    
      food type: Burrito
      type of beans: ${this.beans}
      type of rice: ${this.rice}
      added meat: ${this.protein}
      added toppings: ${this.toppings}
-    
      `
   }
 }
 
-class BurritoFactory implements MealFactory {
+export class BurritoFactory implements MealFactory {
   createMeal(): Burrito {
     return new Burrito()
   }
@@ -77,4 +77,38 @@ class ConcreteBurritoBuilder implements BurritoBuilder {
   public build(): Burrito {
     return this.burrito
   }
+}
+
+export function burritoMeal() {
+  const beanList = ['black', 'pinto']
+  const riceList = ['white', 'brown']
+  const proteinList = ['chicken', 'beef', 'tofu']
+  const toppingList = ['salsa', 'guacamole', 'sour cream', 'cheese']
+
+  const beans = prompts('What types of beans would you like?(black,pinto) ')
+  const rice = prompts('What type of rice would you like?(white,brown) ')
+  const protein = prompts(
+    'What type of meat would you like to have?(chicken, beef, tofu) '
+  )
+  const topping = prompts(
+    'What type of topping would you like?(salsa, guacamole, sour cream, cheese) '
+  )
+
+  if (
+    !beanList.includes(beans) ||
+    !riceList.includes(rice) ||
+    !proteinList.includes(protein) ||
+    !toppingList.includes(topping)
+  ) {
+    errorMessage('INVALID_INPUT')
+  }
+
+  const buldBurrito = new ConcreteBurritoBuilder()
+    .addProtein(protein)
+    .addToppings(topping)
+    .setBeans(beans)
+    .setRice(rice)
+    .build()
+
+  return buldBurrito
 }

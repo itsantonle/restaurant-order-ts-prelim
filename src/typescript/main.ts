@@ -1,6 +1,7 @@
 import promptSync from 'prompt-sync'
 const prompts = promptSync()
 import { BurgerFactory } from './burger'
+import { BurritoFactory } from './burrito'
 import { isCombo, customizeMeal } from './subprompts'
 import { errorMessage } from './error'
 
@@ -15,6 +16,12 @@ function mainPrompt() {
   switch (mealType) {
     case 'burger':
       meal = customizeMeal(new BurgerFactory().createMeal())
+      break
+    case 'burrito':
+      meal = customizeMeal(new BurritoFactory().createMeal())
+      break
+    case 'sandwich':
+      console.log('Sandwich')
       break
     default:
       errorMessage('CLASS_NOT_FOUND')
