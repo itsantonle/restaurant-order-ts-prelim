@@ -1,5 +1,6 @@
 import { burgerMeal, Burger } from './burger'
 import { burritoMeal, Burrito } from './burrito'
+import { sandwichMeal, Sandwich } from './sandwich'
 import promptSync from 'prompt-sync'
 const prompts = promptSync()
 import { errorMessage } from './error'
@@ -26,5 +27,8 @@ export function customizeMeal(test: Meal) {
   }
   if (test instanceof Burrito) {
     return burritoMeal()
+  }
+  if (test instanceof Sandwich) {
+    return sandwichMeal()
   }
 }
